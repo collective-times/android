@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Image, Text, View } from 'react-native';
 
 export default class App extends React.Component {
 
@@ -24,10 +24,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>{this.state.articles[0].title}</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center', margin: 4}}>
+        <Image source={{uri: this.state.articles[0].faviconUrl}} style={{width: 20, height: 20}} />
+        <View style={{flex: 1}}>
+        <Text style={{fontSize: 16, fontWeight: 'bold', fontFamily: 'Roboto'}}>{this.state.articles[0].title}</Text>
+        <Text style={{fontSize: 12, fontWeight: 'normal', fontFamily: 'Roboto'}}>{this.state.articles[0].description}</Text>
+        </View>
+        <Image source={{uri: this.state.articles[0].imageUrl}} style={{width: 120, height: 90}} />
       </View>
     );
   }
@@ -41,3 +44,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
