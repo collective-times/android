@@ -11,7 +11,7 @@ export default class ArticleItem extends React.Component {
   render() {
     let faviconImageView = null;
     if(this.props.faviconUrl){
-      faviconImageView = <Image source={{uri: this.props.faviconUrl}} style={styles.faviconImage} />;
+      faviconImageView = <Image source={ { uri: this.props.faviconUrl } } style={ styles.faviconImage } />;
     }
 
     let articleImageView = null;
@@ -20,11 +20,11 @@ export default class ArticleItem extends React.Component {
     }
 
     return (
-        <View style={styles.container}>
-        {faviconImageView}
-          <View style={styles.textWrap}>
-            <Text style={styles.textWrapTitle}>{this.props.title}</Text>
-            <Text style={styles.textWrapDescription}>{this.props.description}</Text>
+        <View style={ styles.container }>
+        { faviconImageView }
+          <View style={ styles.textWrap }>
+            <Text style={ styles.textWrapTitle}>{ this.props.title }</Text>
+            <Text style={ styles.textWrapDescription}>{ this.props.description }</Text>
           </View>
           { articleImageView }
       </View>

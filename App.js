@@ -43,10 +43,12 @@ export default class App extends React.Component {
   onEndReached(){
     const client = new CollectiveTimesApiClient();
     client.getArticles(this.state.page, (articles) => {
-      this.setState({
-        page: this.state.page + 1,
-        articles: articles
-      });
+      this.setState(
+        {
+          page: this.state.page + 1,
+          articles: this.state.articles.concat(articles)
+        }
+      );
     });
   }
 
@@ -67,7 +69,7 @@ export default class App extends React.Component {
           data={this.state.articles}
           renderItem={this.renderArticleItem}
           keyExtractor={(item, index) => item.key.toString()}
-          onEndReachedThreshold={0.5}
+          onEndReachedThreshold={1}
           onEndReached={this.onEndReached}
         />
         </View>
