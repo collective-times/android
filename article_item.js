@@ -9,19 +9,24 @@ export default class ArticleItem extends React.Component {
   }
 
   render() {
-    let imageView = null;
-    if(this.props.imageUrl.match(/\.png|\.jpg|\.jpeg|\.gif/)){
-      imageView = <Image source={{uri: this.props.imageUrl}} style={styles.image} />;
+    let faviconImageView = null;
+    if(this.props.faviconUrl){
+      faviconImageView = <Image source={{uri: this.props.faviconUrl}} style={styles.faviconImage} />;
+    }
+
+    let articleImageView = null;
+    if(this.props.imageUrl && this.props.imageUrl.match(/\.png|\.jpg|\.jpeg|\.gif/)){
+      articleImageView = <Image source={{uri: this.props.imageUrl}} style={styles.image} />;
     }
 
     return (
         <View style={styles.container}>
-          <Image source={{uri: this.props.faviconUrl}} style={styles.faviconImage} />
+        {faviconImageView}
           <View style={styles.textWrap}>
             <Text style={styles.textWrapTitle}>{this.props.title}</Text>
             <Text style={styles.textWrapDescription}>{this.props.description}</Text>
           </View>
-          { imageView }
+          { articleImageView }
       </View>
     );
   }
