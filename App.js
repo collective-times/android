@@ -9,7 +9,9 @@ export default class App extends React.Component {
     super(props);
     this.renderArticleItem = this.renderArticleItem.bind(this);
     this.onEndReached = this.onEndReached.bind(this);
+    this.onReload = this.onReload.bind(this);
     this.state = {
+      refreshing: false,
       page: 1,
       articles: []
     };
@@ -52,17 +54,37 @@ export default class App extends React.Component {
     });
   }
 
+  onReload(){
+    this.setState({
+      refreshing: true,
+      page: 1,
+      articles: []
+    });
+
+    const client = new CollectiveTimesApiClient();
+    client.getArticles(1, (articles) => {
+      this.setState(
+        {
+          refreshing: false,
+          page: this.state.page + 1,
+          articles: this.state.articles.concat(articles)
+        }
+      );
+    });
+  }
+
   render() {
     let articleListView = null;
     if(this.state.articles.length !== 0){
       articleListView =
         <FlatList
-          style={styles.container}
           data={this.state.articles}
           renderItem={this.renderArticleItem}
           keyExtractor={(item, index) => item.key.toString()}
           onEndReachedThreshold={1}
           onEndReached={this.onEndReached}
+          refreshing={this.state.refreshing}
+          onRefresh={this.onReload}
         />;
     }
 
