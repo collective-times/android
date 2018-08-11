@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, StyleSheet, Image, Text, View } from 'react-native';
+import { ToolbarAndroid, FlatList, StyleSheet, Image, Text, View } from 'react-native';
 import CollectiveTimesApiClient from './api_client';
 import ArticleItem from './article_item';
 
@@ -30,7 +30,7 @@ export default class App extends React.Component {
         <ArticleItem
           id={article.item.key}
           title={article.item.title}
-          description={article.item.description}
+          description={article.item.description.slice(0, 60)}
           articleUrl={article.item.articleUrl}
           faviconUrl={article.item.faviconUrl}
           imageUrl={article.item.imageUrl}
@@ -57,19 +57,36 @@ export default class App extends React.Component {
     }
 
     return (
+      <View style={styles.container}>
+        <ToolbarAndroid
+          style={styles.toolBar}
+          logo={require('./img/logo.jpg')}>
+          <Text style={styles.appTitle}>CollectiveTimes</Text>
+        </ToolbarAndroid>
         <FlatList
           style={styles.container}
           data={this.state.articles}
           renderItem={this.renderArticleItem}
           keyExtractor={(item, index) => item.key.toString()}
         />
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  appTitle: {
+    paddingLeft: 12,
+    fontSize: 24,
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+  },
+  toolBar: {
+    height: 56,
+    elevation: 4,
+    backgroundColor: '#c8f277de',
+  },
   container: {
     flex: 1,
-    marginTop: 20,
   },
 });
