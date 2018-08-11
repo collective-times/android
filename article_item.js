@@ -10,13 +10,13 @@ export default class ArticleItem extends React.Component {
 
   render() {
     return (
-      <View style={{flexDirection: 'row', alignItems: 'center', margin: 4}}>
-        <Image source={{uri: this.props.faviconUrl}} style={{width: 20, height: 20}} />
-        <View style={{flex: 1}}>
-          <Text style={{fontSize: 16, fontWeight: 'bold', fontFamily: 'Roboto'}}>{this.props.title}</Text>
-          <Text style={{fontSize: 12, fontWeight: 'normal', fontFamily: 'Roboto'}}>{this.props.description}</Text>
-        </View>
-        <Image source={{uri: this.props.imageUrl}} style={{width: 120, height: 90}} />
+        <View style={styles.container}>
+          <Image source={{uri: this.props.faviconUrl}} style={styles.faviconImage} />
+          <View style={styles.textWrap}>
+            <Text style={styles.textWrapTitle}>{this.props.title}</Text>
+            <Text style={styles.textWrapDescription}>{this.props.description}</Text>
+          </View>
+          <Image source={{uri: this.props.imageUrl}} style={styles.image} />
       </View>
     );
   }
@@ -24,11 +24,46 @@ export default class ArticleItem extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    borderStyle: 'solid',
+    borderColor: '#e6ecf0',
+    borderBottomWidth: 1,
+    paddingBottom: 8,
+    paddingTop: 4
   },
+  faviconImage: {
+    width: 20,
+    height: 20,
+    marginLeft: 8,
+    marginRight: 8
+  },
+  textWrap: {
+    flex: 1
+  },
+  textWrapTitle: {
+    paddingBottom: 2,
+    fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    textAlign: 'justify',
+    lineHeight: 20,
+  },
+  textWrapDescription: {
+    paddingTop: 2,
+    fontSize: 12,
+    fontWeight: 'normal',
+    fontFamily: 'Roboto',
+    color: '#777',
+    textAlign: 'justify',
+    lineHeight: 16,
+  },
+  image: {
+    width: 120,
+    height: 90,
+    marginLeft: 8,
+    marginRight: 8
+  }
 });
 
 ArticleItem.propTypes = {
