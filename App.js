@@ -53,8 +53,17 @@ export default class App extends React.Component {
   }
 
   render() {
-    if(this.state.articles.length === 0){
-      return (null);
+    let articleListView = null;
+    if(this.state.articles.length !== 0){
+      articleListView =
+        <FlatList
+          style={styles.container}
+          data={this.state.articles}
+          renderItem={this.renderArticleItem}
+          keyExtractor={(item, index) => item.key.toString()}
+          onEndReachedThreshold={1}
+          onEndReached={this.onEndReached}
+        />;
     }
 
     return (
@@ -64,15 +73,8 @@ export default class App extends React.Component {
           logo={require('./img/logo.jpg')}>
           <Text style={styles.appTitle}>CollectiveTimes</Text>
         </ToolbarAndroid>
-        <FlatList
-          style={styles.container}
-          data={this.state.articles}
-          renderItem={this.renderArticleItem}
-          keyExtractor={(item, index) => item.key.toString()}
-          onEndReachedThreshold={1}
-          onEndReached={this.onEndReached}
-        />
-        </View>
+        { articleListView }
+      </View>
     );
   }
 }
