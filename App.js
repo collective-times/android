@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToolbarAndroid, FlatList, StyleSheet, Image, Text, View } from 'react-native';
+import { StyleSheet, View, ToolbarAndroid, Text, FlatList } from 'react-native';
 import CollectiveTimesApiClient from './api_client';
 import ArticleItem from './article_item';
 
@@ -9,7 +9,8 @@ export default class App extends React.Component {
     super(props);
     this.renderArticleItem = this.renderArticleItem.bind(this);
     this.onEndReached = this.onEndReached.bind(this);
-    this.onReload = this.onReload.bind(this);
+    this.handleReloadArticles = this.handleReloadArticles.bind(this);
+    this.handleSelectedArticleUrl = this.handleSelectedArticleUrl.bind(this);
     this.state = {
       refreshing: false,
       page: 1,
@@ -38,6 +39,7 @@ export default class App extends React.Component {
           imageUrl={article.item.imageUrl}
           sourceUrl={article.item.sourceUrl}
           date={article.item.date}
+          handleSelectedArticleUrl={this.handleSelectedArticleUrl}
         />
     );
   }
@@ -54,7 +56,7 @@ export default class App extends React.Component {
     });
   }
 
-  onReload(){
+  handleReloadArticles(){
     this.setState({
       refreshing: true,
       page: 1,
@@ -73,6 +75,10 @@ export default class App extends React.Component {
     });
   }
 
+  handleSelectedArticleUrl(articleUrl){
+    console.log(articleUrl);
+  }
+
   render() {
     let articleListView = null;
     if(this.state.articles.length !== 0){
@@ -84,7 +90,7 @@ export default class App extends React.Component {
           onEndReachedThreshold={1}
           onEndReached={this.onEndReached}
           refreshing={this.state.refreshing}
-          onRefresh={this.onReload}
+          onRefresh={this.handleReloadArticles}
         />;
     }
 

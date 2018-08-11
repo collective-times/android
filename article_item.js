@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, Text, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Image, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class ArticleItem extends React.Component {
@@ -20,14 +20,16 @@ export default class ArticleItem extends React.Component {
     }
 
     return (
-        <View style={ styles.container }>
-        { faviconImageView }
-          <View style={ styles.textWrap }>
-            <Text style={ styles.textWrapTitle}>{ this.props.title }</Text>
-            <Text style={ styles.textWrapDescription}>{ this.props.description }</Text>
+        <TouchableOpacity onPress={ ()=> { this.props.handleSelectedArticleUrl(this.props.articleUrl); } }>
+          <View style={ styles.container }>
+            { faviconImageView }
+            <View style={ styles.textWrap }>
+              <Text style={ styles.textWrapTitle}>{ this.props.title }</Text>
+              <Text style={ styles.textWrapDescription}>{ this.props.description }</Text>
+            </View>
+            { articleImageView }
           </View>
-          { articleImageView }
-      </View>
+        </TouchableOpacity>
     );
   }
 }
@@ -85,4 +87,5 @@ ArticleItem.propTypes = {
   imageUrl: PropTypes.string,
   sourceUrl: PropTypes.string,
   date: PropTypes.string,
+  handleSelectedArticleUrl: PropTypes.func.isRequired,
 };
