@@ -20,7 +20,7 @@ export default class ArticleItem extends React.Component {
     }
 
     return (
-        <TouchableOpacity onPress={ ()=> { this.props.handleSelectedArticleUrl(this.props.articleUrl); } }>
+        <TouchableOpacity onPress={ ()=> { this.props.handleSelectedArticleUrl(this.props.title, this.props.articleUrl); } }>
           <View style={ styles.container }>
             { faviconImageView }
             <View style={ styles.textWrap }>
