@@ -75,8 +75,8 @@ export default class ArticleListScreen extends React.Component {
     });
   }
 
-  handleSelectedArticleUrl(articleUrl){
-    this.props.navigation.navigate('Detail', { url: articleUrl });
+  handleSelectedArticleUrl(articleTitle, articleUrl){
+    this.props.navigation.navigate('Detail', { title: articleTitle, url: articleUrl });
   }
 
   render() {
@@ -96,11 +96,6 @@ export default class ArticleListScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ToolbarAndroid
-          style={styles.toolBar}
-          logo={require('./img/logo.jpg')}>
-          <Text style={styles.appTitle}>CollectiveTimes</Text>
-        </ToolbarAndroid>
         { articleListView }
       </View>
     );
