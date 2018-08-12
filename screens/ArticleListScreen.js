@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ToolbarAndroid, Text, FlatList } from 'react-native';
-import CollectiveTimesApiClient from './CollectiveTimesApiClient';
-import ArticleItem from './ArticleItem';
+import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
+import ArticleItem from '../components/ArticleItem';
 
 export default class ArticleListScreen extends React.Component {
 

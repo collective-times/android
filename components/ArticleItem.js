@@ -36,6 +36,7 @@ export default class ArticleItem extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
     borderStyle: 'solid',

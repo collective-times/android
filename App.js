@@ -1,15 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import ArticleListScreen from './ArticleListScreen';
-import ArticleScreen from './ArticleScreen';
-import LogoTitle from './LogoTitle';
+import AppLogo from './components/AppLogo';
+import ArticleListScreen from './screens/ArticleListScreen';
+import ArticleScreen from './screens/ArticleScreen';
 
 const RootStack = createStackNavigator(
   {
     Home: {
       screen: ArticleListScreen,
       navigationOptions: {
-        headerTitle: <LogoTitle />,
+        headerTitle: <AppLogo />,
       },
     },
     Detail: {
@@ -31,7 +31,6 @@ const RootStack = createStackNavigator(
     initialRouteName: 'Home',
   }
 );
-
 
 export default class App extends React.Component {
   render() {
