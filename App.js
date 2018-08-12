@@ -10,14 +10,6 @@ const RootStack = createStackNavigator(
       screen: ArticleListScreen,
       navigationOptions: {
         headerTitle: <LogoTitle />,
-//        headerStyle: {
-//          backgroundColor: '#c8f277de',
-//        },
-//        headerTintColor: '#000000',
-//        headerTitleStyle: {
-//          fontWeight: 'bold',
-//          fontFamily: 'Roboto',
-//        },
       },
     },
     Detail: {

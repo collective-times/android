@@ -6,7 +6,8 @@ export default class LogoTitle extends React.Component {
   render() {
     return (
         <View style={styles.container}>
-          <Image source={require('./img/logo.jpg')} />
+          <Image style={styles.appImage}
+                 source={ { uri: 'https://pbs.twimg.com/profile_images/928496093381271564/LS3fqeXk_400x400.jpg' } } />
           <Text style={styles.appTitle}>CollectiveTimes</Text>
         </View>
     );
@@ -21,6 +22,11 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: '#c8f277de',
     padding: 10
+  },
+  appImage: {
+    width: 36,
+    height: 36,
+    borderRadius: 64
   },
   appTitle: {
     paddingLeft: 12,
