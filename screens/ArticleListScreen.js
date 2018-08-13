@@ -12,7 +12,7 @@ export default class ArticleListScreen extends React.Component {
     this.handleReloadArticles = this.handleReloadArticles.bind(this);
     this.handleSelectedArticleUrl = this.handleSelectedArticleUrl.bind(this);
     this.state = {
-      refreshing: false,
+      refreshing: true,
       page: 1,
       articles: []
     };
@@ -22,6 +22,7 @@ export default class ArticleListScreen extends React.Component {
     const client = new CollectiveTimesApiClient();
     client.getArticles(this.state.page, (articles) => {
       this.setState({
+        refreshing: false,
         page: this.state.page + 1,
         articles: articles
       });
@@ -49,6 +50,7 @@ export default class ArticleListScreen extends React.Component {
     client.getArticles(this.state.page, (articles) => {
       this.setState(
         {
+          refreshing: false,
           page: this.state.page + 1,
           articles: this.state.articles.concat(articles)
         }
