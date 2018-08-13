@@ -105,17 +105,6 @@ export default class ArticleListScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  appTitle: {
-    paddingLeft: 12,
-    fontSize: 24,
-    fontWeight: 'bold',
-    fontFamily: 'Roboto',
-  },
-  toolBar: {
-    height: 56,
-    elevation: 4,
-    backgroundColor: '#c8f277de',
-  },
   container: {
     flex: 1,
   },
