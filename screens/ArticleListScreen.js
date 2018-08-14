@@ -39,6 +39,7 @@ export default class ArticleListScreen extends React.Component {
           faviconUrl={article.item.faviconUrl}
           imageUrl={article.item.imageUrl}
           sourceUrl={article.item.sourceUrl}
+          sourceTitle={article.item.sourceTitle}
           date={article.item.date}
           handleSelectedArticleUrl={this.handleSelectedArticleUrl}
         />

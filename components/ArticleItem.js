@@ -29,6 +29,7 @@ export default class ArticleItem extends React.Component {
             </View>
             { articleImageView }
           </View>
+          <Text style={ styles.textSourceTitle }>{ this.props.sourceTitle }</Text>
         </TouchableOpacity>
     );
   }
@@ -71,6 +72,13 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     lineHeight: 16,
   },
+  textSourceTitle: {
+    margin: 4,
+    fontSize: 8,
+    fontWeight: 'normal',
+    fontFamily: 'Roboto',
+    color: '#777',
+  },
   image: {
     width: 120,
     height: 90,
@@ -88,5 +96,6 @@ ArticleItem.propTypes = {
   imageUrl: PropTypes.string,
   sourceUrl: PropTypes.string,
   date: PropTypes.string,
+  sourceTitle: PropTypes.string,
   handleSelectedArticleUrl: PropTypes.func.isRequired,
 };
