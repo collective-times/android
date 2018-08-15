@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ToolbarAndroid, Text, FlatList } from 'react-native';
 import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
 import ArticleItem from '../components/ArticleItem';
+import ProgressDialog from '../components/ProgressDialog';
 
 export default class ArticleListScreen extends React.Component {
 
@@ -12,7 +13,7 @@ export default class ArticleListScreen extends React.Component {
     this.handleReloadArticles = this.handleReloadArticles.bind(this);
     this.handleSelectedArticleUrl = this.handleSelectedArticleUrl.bind(this);
     this.state = {
-      refreshing: true,
+      refreshing: false,
       page: 1,
       articles: []
     };
@@ -83,6 +84,12 @@ export default class ArticleListScreen extends React.Component {
   }
 
   render() {
+    if(this.state.page === 1 && !this.state.refreshing){
+      return(
+          <ProgressDialog />
+      );
+    }
+
     let articleListView = null;
     if(this.state.articles.length !== 0){
       articleListView =
