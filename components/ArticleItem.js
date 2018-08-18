@@ -10,9 +10,10 @@ export default class ArticleItem extends React.Component {
 
   render() {
     let faviconImageView = null;
-    if(this.props.faviconUrl){
-      faviconImageView = <Image source={ { uri: this.props.faviconUrl } } style={ styles.faviconImage } />;
-    }
+    // remove favicon
+    // if(this.props.faviconUrl){
+    //   faviconImageView = <Image source={ { uri: this.props.faviconUrl } } style={ styles.headerFaviconImage } />;
+    // }
 
     let articleImageView = null;
     if(this.props.imageUrl && this.props.imageUrl.match(/\.png|\.jpg|\.jpeg|\.gif/)){
@@ -22,14 +23,21 @@ export default class ArticleItem extends React.Component {
     return (
         <TouchableOpacity onPress={ ()=> { this.props.handleSelectedArticleUrl(this.props.title, this.props.articleUrl); } }>
           <View style={ styles.container }>
-            { faviconImageView }
-            <View style={ styles.textWrap }>
-              <Text style={ styles.textWrapTitle}>{ this.props.title }</Text>
-              <Text style={ styles.textWrapDescription}>{ this.props.description }</Text>
+
+            <View style={ styles.header }>
+              { faviconImageView }
+              <Text style={ styles.headerTextSourceTitle }>{ this.props.sourceTitle }</Text>
             </View>
-            { articleImageView }
+
+            <View style={ styles.contents }>
+              <View style={ styles.textWrap }>
+                <Text style={ styles.textWrapTitle}>{ this.props.title }</Text>
+                <Text style={ styles.textWrapDescription}>{ this.props.description }</Text>
+              </View>
+              { articleImageView }
+            </View>
+
           </View>
-          <Text style={ styles.textSourceTitle }>{ this.props.sourceTitle }</Text>
         </TouchableOpacity>
     );
   }
@@ -38,19 +46,31 @@ export default class ArticleItem extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
+    flexDirection: 'column',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 8,
+  },
+  headerFaviconImage: {
+    width: 20,
+    height: 20,
+    marginRight: 8
+  },
+  headerTextSourceTitle: {
+    fontSize: 12,
+    fontWeight: 'normal',
+    fontFamily: 'Roboto',
+    color: '#000',
+  },
+  contents: {
     flexDirection: 'row',
     alignItems: 'center',
     borderStyle: 'solid',
     borderColor: '#e6ecf0',
     borderBottomWidth: 1,
-    paddingBottom: 8,
-    paddingTop: 4
-  },
-  faviconImage: {
-    width: 20,
-    height: 20,
-    marginLeft: 8,
-    marginRight: 8
+    padding: 8,
   },
   textWrap: {
     flex: 1
@@ -72,18 +92,10 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     lineHeight: 16,
   },
-  textSourceTitle: {
-    margin: 4,
-    fontSize: 8,
-    fontWeight: 'normal',
-    fontFamily: 'Roboto',
-    color: '#777',
-  },
   image: {
     width: 120,
     height: 90,
     marginLeft: 8,
-    marginRight: 8
   }
 });
 
