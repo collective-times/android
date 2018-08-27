@@ -20,9 +20,14 @@ export default class ArticleItem extends React.Component {
       articleImageView = <Image source={{uri: this.props.imageUrl}} style={styles.image} />;
     }
 
+    let containerColor = styles.container;
+    if(this.props.sourceTitle.match(/.*はてな.*/)){
+      containerColor = styles.hatenaContainer;
+    }
+
     return (
         <TouchableOpacity onPress={ ()=> { this.props.handleSelectedArticleUrl(this.props.title, this.props.articleUrl); } }>
-          <View style={ styles.container }>
+          <View style={ containerColor }>
 
             <View style={ styles.header }>
               { faviconImageView }
@@ -45,6 +50,10 @@ export default class ArticleItem extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#d5f9b6',
+    flexDirection: 'column',
+  },
+  hatenaContainer: {
     backgroundColor: '#fff',
     flexDirection: 'column',
   },
