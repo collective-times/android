@@ -79,8 +79,8 @@ export default class ArticleListScreen extends React.Component {
     });
   }
 
-  handleSelectedArticleUrl(articleTitle, articleUrl){
-    this.props.navigation.navigate('Detail', { title: articleTitle, url: articleUrl });
+  handleSelectedArticleUrl(id, articleTitle, articleUrl){
+    this.props.navigation.navigate('Detail', { id: id, title: articleTitle, url: articleUrl });
   }
 
   render() {
