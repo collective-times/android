@@ -12,4 +12,15 @@ export default class CollectiveTimesApiClient {
       callback(res.data.articles);
     }
   };
+
+  async saveVisitedArticleBy(articleId) {
+    const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}histories`, {
+      article_id: articleId
+    });
+    if (res.status !== 200) {
+      console.log('fail');
+    } else {
+      console.log('success');
+    }
+  };
 }
