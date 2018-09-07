@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Image, ActivityIndicator } from 'react-native';
 
 export default class SplashScreen extends React.Component {
 
@@ -15,6 +15,9 @@ export default class SplashScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Text>nypermkt</Text>
+        <Image style={styles.appImage}
+               source={ { uri: 'https://pbs.twimg.com/profile_images/928496093381271564/LS3fqeXk_400x400.jpg' } } />
+        <ActivityIndicator style={styles.indicator} size="large" />
       </View>
     );
   }
@@ -22,6 +25,16 @@ export default class SplashScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#c8f277de',
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  appImage: {
+    width: 72,
+    height: 72,
+  },
+  indicator: {
+    paddindTop: 12
+  }
 });
