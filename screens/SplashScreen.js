@@ -14,7 +14,6 @@ export default class SplashScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>nypermkt</Text>
         <Image style={styles.appImage}
                source={ { uri: 'https://pbs.twimg.com/profile_images/928496093381271564/LS3fqeXk_400x400.jpg' } } />
         <ActivityIndicator style={styles.indicator} size="large" />
@@ -35,6 +34,6 @@ const styles = StyleSheet.create({
     height: 72,
   },
   indicator: {
-    paddindTop: 12
+    paddingTop: 12
   }
 });
