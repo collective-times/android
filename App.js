@@ -1,10 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import AppLogo from './components/AppLogo';
+import SplashScreen from './screens/SplashScreen';
+import LoginScreen from './screens/LoginScreen';
 import ArticleListScreen from './screens/ArticleListScreen';
 import ArticleScreen from './screens/ArticleScreen';
 
-const RootStack = createStackNavigator(
+const AppStack = createStackNavigator(
   {
     Home: {
       screen: ArticleListScreen,
@@ -26,9 +28,24 @@ const RootStack = createStackNavigator(
         },
       }),
     },
+  }
+);
+
+const RootStack = createStackNavigator(
+  {
+    Splash: {
+      screen: SplashScreen,
+    },
+    Login: {
+      screen: LoginScreen,
+    },
+    Home: {
+      screen: AppStack,
+    },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Splash',
+    headerMode: 'none',
   }
 );
 

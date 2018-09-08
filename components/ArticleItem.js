@@ -26,7 +26,7 @@ export default class ArticleItem extends React.Component {
     }
 
     return (
-        <TouchableOpacity onPress={ ()=> { this.props.handleSelectedArticleUrl(this.props.title, this.props.articleUrl); } }>
+        <TouchableOpacity onPress={ ()=> { this.props.handleSelectedArticleUrl(this.props.id, this.props.title, this.props.articleUrl); } }>
           <View style={ containerColor }>
 
             <View style={ styles.header }>

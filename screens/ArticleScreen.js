@@ -1,11 +1,22 @@
 import React from 'react';
 import { WebView } from 'react-native';
 import PropTypes from 'prop-types';
+import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
 
 export default class ArticleScreen extends React.Component {
 
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount(){
+    const articleId = this.props.navigation.getParam('id');
+    if(!articleId){
+      return;
+    }
+
+    const client = new CollectiveTimesApiClient();
+    client.saveVisitedArticleBy(null, articleId);
   }
 
   render() {
