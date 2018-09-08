@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation';
 import AppLogo from './components/AppLogo';
 import SplashScreen from './screens/SplashScreen';
+import LoginScreen from './screens/LoginScreen';
 import ArticleListScreen from './screens/ArticleListScreen';
 import ArticleScreen from './screens/ArticleScreen';
 
@@ -34,6 +35,9 @@ const RootStack = createStackNavigator(
   {
     Splash: {
       screen: SplashScreen,
+    },
+    Login: {
+      screen: LoginScreen,
     },
     Home: {
       screen: AppStack,
