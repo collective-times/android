@@ -16,7 +16,7 @@ export default class ArticleScreen extends React.Component {
     }
 
     const client = new CollectiveTimesApiClient();
-    client.saveVisitedArticleBy(articleId);
+    client.saveVisitedArticleBy(null, articleId);
   }
 
   render() {

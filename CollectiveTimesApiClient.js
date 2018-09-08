@@ -30,6 +30,12 @@ export default class CollectiveTimesApiClient {
     const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}/histories`,
                                  {
                                    article_id: articleId
+                                 },
+                                 {
+                                   headers: {
+                                     'Accept': 'application/json',
+                                     'Content-Type': 'application/json'
+                                   }
                                  });
     if (res.status === 200) {
       console.log('success');
