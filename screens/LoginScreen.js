@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, TextInput, Button } from 'react-native';
 import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
 
 export default class LoginScreen extends React.Component {
@@ -13,14 +13,12 @@ export default class LoginScreen extends React.Component {
     this.state = { username: '', passwrord: '' };
   }
 
-  onChangeUserNameField(event) {
-    const username = event.target.value;
-    this.setState({username: username});
+  onChangeUserNameField(value) {
+    this.setState({username: value});
   }
 
-  onChangePasswordField(event) {
-    const password = event.target.value;
-    this.setState({password: password});
+  onChangePasswordField(value) {
+    this.setState({password: value});
   }
 
   onClickLoginButton(){
@@ -34,7 +32,26 @@ export default class LoginScreen extends React.Component {
   }
 
   render() {
-    
+    return(
+        <View>
+        <TextInput
+      style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+      onChangeText={this.onChangeUserNameField}
+      value={this.state.username}
+        />
+         <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={this.onChangePasswordField}
+        value={this.state.password}
+        />
+        <Button
+  onPress={this.onClickLoginButton}
+  title="Learn More"
+  color="#841584"
+  accessibilityLabel="Learn more about this purple button"
+/>
+        </View>
+    );
   }
 }
 
