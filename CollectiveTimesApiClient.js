@@ -2,14 +2,18 @@ import axios from 'axios';
 
 export default class CollectiveTimesApiClient {
 
-  static get API_ENDPOINT() { return "https://collective-times-api.herokuapp.com/v1"; };
+  static get API_ENDPOINT() { return "https://collective-times-api.herokuapp.com"; };
 
   async login(username, password, callback) {
-    const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}/login`,
+    const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}/oauth/token`,
                                  {
+                                   grant_type: 'password',
+                                   client_id: 1,
+                                   client_secret: 'your_secret',
                                    username: username,
                                    password: password
                                  });
+
     if (res.status === 201) {
       callback(res.data);
     } else {
@@ -18,7 +22,7 @@ export default class CollectiveTimesApiClient {
   }
 
   async getArticles(page, callback) {
-    const res = await axios.get(`${CollectiveTimesApiClient.API_ENDPOINT}/articles?page=${page}`);
+    const res = await axios.get(`${CollectiveTimesApiClient.API_ENDPOINT}/v1/articles?page=${page}`);
     if (res.status === 200) {
       callback(res.data.articles);
     } else {
@@ -27,7 +31,7 @@ export default class CollectiveTimesApiClient {
   };
 
   async saveVisitedArticleBy(token, articleId) {
-    const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}/histories`,
+    const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}/v1/histories`,
                                  {
                                    article_id: articleId
                                  },
