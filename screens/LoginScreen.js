@@ -45,11 +45,11 @@ export default class LoginScreen extends React.Component {
         value={this.state.password}
         />
         <Button
-  onPress={this.onClickLoginButton}
-  title="Learn More"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
-/>
+      onPress={this.onClickLoginButton}
+      title="Learn More"
+      color="#841584"
+      accessibilityLabel="Learn more about this purple button"
+        />
         </View>
     );
   }
