@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
+import Authenticator from '../data';
 
 export default class LoginScreen extends React.Component {
 
@@ -27,8 +28,10 @@ export default class LoginScreen extends React.Component {
   }
 
   handleLoggedIn(data){
-    // TODO: save token
-    this.props.navigation.navigate('Home');
+    Authenticator.addAccountExplicitly (this.state.username, this.state.password, data)
+      .then((account) => {
+        this.props.navigation.navigate('Home');
+      });
   }
 
   render() {

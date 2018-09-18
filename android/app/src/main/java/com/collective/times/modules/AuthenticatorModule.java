@@ -32,9 +32,8 @@ public class AuthenticatorModule extends ReactContextBaseJavaModule {
         String accessToken = accountObject.getString("access_token");
         String refreshToken = accountObject.getString("refresh_token");
 
-
         AccountManager manager = AccountManager.get(mReactContext);
-        Account account = new Account(userName, "CollectiveTimes");
+        Account account = new Account(userName, "com.collective.times");
 
         Bundle userdata = new Bundle();
         userdata.putString("token_type", accountType);
