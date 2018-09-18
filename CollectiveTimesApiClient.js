@@ -4,6 +4,7 @@ export default class CollectiveTimesApiClient {
 
   static get API_ENDPOINT() { return "https://collective-times-api.herokuapp.com"; };
 
+
   async login(username, password, callback) {
     const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}/oauth/token`,
                                  {
@@ -14,10 +15,10 @@ export default class CollectiveTimesApiClient {
                                    password: password
                                  });
 
-    if (res.status === 201) {
+    if (res.status === 200) {
       callback(res.data);
     } else {
-      callback([]);
+      callback({});
     }
   }
 
