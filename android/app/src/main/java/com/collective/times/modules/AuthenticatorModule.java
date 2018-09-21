@@ -54,9 +54,14 @@ public class AuthenticatorModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getAccessToken (ReadableMap accountObject, Promise promise) {
+    public void getAccessToken (Promise promise) {
         AccountManager accountManager = AccountManager.get(mReactContext);
-        Account[] accounts = accountManager.getAccountsByType("CollectiveTimes");
+        Account[] accounts = accountManager.getAccountsByType("com.collective.times");
+
+        if(accounts == null || accounts.length == 0) {
+            promise.reject("Not found account");
+            return;
+        }
 
         Account account = accounts[0];
         if(account == null) {
@@ -66,7 +71,7 @@ public class AuthenticatorModule extends ReactContextBaseJavaModule {
 
         String accessToken = accountManager.getUserData(account, "access_token");
         if(accessToken == null) {
-            promise.reject("Invalid account");
+            promise.reject("Not found access token");
             return;
         }
 
