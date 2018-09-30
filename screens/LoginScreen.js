@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Image, TextInput, Button } from 'react-native';
 import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
 import Authenticator from '../data';
 
@@ -36,23 +36,31 @@ export default class LoginScreen extends React.Component {
 
   render() {
     return(
-        <View>
-        <TextInput
-      style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-      onChangeText={this.onChangeUserNameField}
-      value={this.state.username}
-        />
-         <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={this.onChangePasswordField}
-        value={this.state.password}
-        />
-        <Button
-      onPress={this.onClickLoginButton}
-      title="Learn More"
-      color="#841584"
-      accessibilityLabel="Learn more about this purple button"
-        />
+        <View style={ styles.container }>
+          <View  style={styles.appImageWrap}>
+            <Image style={styles.appImage}
+                   source={ { uri: 'https://pbs.twimg.com/profile_images/928496093381271564/LS3fqeXk_400x400.jpg' } } />
+          </View>
+          <View style={ styles.textWrap }>
+            <TextInput style={styles.textWrapUserName}
+                       onChangeText={this.onChangeUserNameField}
+                       underlineColorAndroid='transparent'
+                       placeholder={"メールアドレス"}
+                       value={this.state.username} />
+            <TextInput style={styles.textWrapPassword}
+                       textContetType="password"
+                       secureTextEntry={true}
+                       onChangeText={this.onChangePasswordField}
+                       underlineColorAndroid='transparent'
+                       placeholder={"パスワード"}
+                       value={this.state.password} />
+            <Button style={ styles.textWrapLogin }
+                    title="ログイン"
+                    accessibilityLabel="ログイン"
+                    color="#4CAF50"
+                    onPress={this.onClickLoginButton} />
+          </View>
+
         </View>
     );
   }
@@ -60,16 +68,46 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#c8f277de',
     flex: 1,
-    alignItems: 'center',
+    backgroundColor: '#c8f277de',
+  },
+  appImageWrap: {
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center'
   },
   appImage: {
     width: 72,
     height: 72,
   },
-  indicator: {
-    paddingTop: 12
+  textWrap: {
+    flex: 2,
+    paddingLeft: 48,
+    paddingRight: 48,
+  },
+  textWrapUserName: {
+    height: 48,
+    marginTop: 8,
+    marginBottom: 4,
+    paddingTop: 12,
+    backgroundColor: '#fff',
+    borderRadius: 4,
+    borderColor: 'gray',
+    borderWidth: 1
+  },
+  textWrapPassword: {
+    height: 48,
+    marginTop: 4,
+    marginBottom: 4,
+    paddingTop: 12,
+    backgroundColor: '#fff',
+    borderRadius: 4,
+    borderColor: 'gray',
+    borderWidth: 1
+  },
+  textWrapLogin: {
+    height: 48,
+    marginTop: 4,
+    marginBottom: 8,
   }
 });
