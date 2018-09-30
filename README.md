@@ -2,6 +2,13 @@
 
 Native Application that displays technical information.
 
+## DevServer config
+
+```
+$ sudo sysctl -w kern.maxfiles=5242880
+$ sudo sysctl -w kern.maxfilesperproc=524288
+```
+
 ## Build Android App
 
 ```

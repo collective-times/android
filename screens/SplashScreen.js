@@ -1,14 +1,31 @@
 import React from 'react';
 import { StyleSheet, View, Image, ActivityIndicator } from 'react-native';
+import Authenticator from '../data';
 
 export default class SplashScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.launchScreen = this.launchScreen.bind(this);
   }
 
   componentDidMount(){
-    setTimeout(() => { this.props.navigation.navigate('Home'); }, 3000);
+    this.launchScreen();
+  }
+
+  async launchScreen(){
+    try {
+      const token = await Authenticator.getAccessToken();
+
+      if(token) {
+        this.props.navigation.navigate('Home');
+      } else {
+        this.props.navigation.navigate('Login');
+      }
+    } catch(error) {
+      console.log(error);
+      this.props.navigation.navigate('Login');
+    }
   }
 
   render() {
