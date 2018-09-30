@@ -2,11 +2,13 @@ import React from 'react';
 import { WebView } from 'react-native';
 import PropTypes from 'prop-types';
 import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
+import Authenticator from '../data';
 
 export default class ArticleScreen extends React.Component {
 
   constructor(props) {
     super(props);
+    this.saveArticleId = this.saveArticleId.bind(this);
   }
 
   componentDidMount(){
@@ -15,8 +17,23 @@ export default class ArticleScreen extends React.Component {
       return;
     }
 
+    this.saveArticleId(articleId);
+  }
+
+  async saveArticleId(articleId){
     const client = new CollectiveTimesApiClient();
-    client.saveVisitedArticleBy(null, articleId);
+    try {
+      const token = await Authenticator.getAccessToken();
+
+      if(token) {
+        client.saveVisitedArticleBy(token.access_token, articleId);
+      } else {
+        client.saveVisitedArticleBy(null, articleId);
+      }
+    } catch(error) {
+      console.log(error);
+      client.saveVisitedArticleBy(null, articleId);
+    }
   }
 
   render() {
