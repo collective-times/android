@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ToolbarAndroid, Text, FlatList } from 'react-native';
+import { StyleSheet, View, ToolbarAndroid, FlatList } from 'react-native';
 import CollectiveTimesApiClient from '../CollectiveTimesApiClient';
 import ArticleItem from '../components/ArticleItem';
 import ProgressDialog from '../components/ProgressDialog';
