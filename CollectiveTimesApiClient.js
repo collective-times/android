@@ -32,16 +32,22 @@ export default class CollectiveTimesApiClient {
   };
 
   async saveVisitedArticleBy(token, articleId) {
+    let headers = {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    };
+
+    if(token){
+      headers['headers']['Authorization'] = `Bearer ${token}`;
+    }
+
     const res = await axios.post(`${CollectiveTimesApiClient.API_ENDPOINT}/v1/histories`,
                                  {
                                    article_id: articleId
                                  },
-                                 {
-                                   headers: {
-                                     'Accept': 'application/json',
-                                     'Content-Type': 'application/json'
-                                   }
-                                 });
+                                 headers);
     if (res.status === 200) {
       console.log('success');
     } else {
